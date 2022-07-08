@@ -1,12 +1,16 @@
-const express = require('express');
+const express = require("express");
 
 const server = express();
 
+// Query params =?nome=NodeJS
+// Route Params = /curso/2
+// Request Body = {nome: 'NodeJS', tipo:'BackEnd'}
 
-//localhost:3000/cursos 
-server.get('/cursos', ()=> {
-    console.log("acessou a rota")
+
+server.get('/curso/:id', (req, res) =>{
+    const id = req.params.id;
+    
+    return res.json({curso: `Id do curso é ${id}`})
 })
 
-//will listen the port 3000
-server.listen(3000)
+server.listen(3000);
