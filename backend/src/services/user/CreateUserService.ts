@@ -1,5 +1,6 @@
 import { triggerAsyncId } from 'async_hooks';
 import prismaClient from '../../prisma'
+import {hash} from 'bcryptjs'
 
 interface UserRequest {
   name: string;
@@ -24,11 +25,13 @@ class CreateUserService {
         throw new Error("email is already in use!!")
     }
 
+    const passwordHash = await hash(password,8)
+
     const user = await prismaClient.user.create({
         data: {
             name: name,
             email:email,
-            password: password
+            password: passwordHash
         },
         select:{
             id:true,
