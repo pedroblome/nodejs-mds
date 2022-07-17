@@ -3,8 +3,6 @@ import { CreateCategoryService } from "../../services/category/CreateCategorySer
 
 
 class CreateCategoryController{
-    const
-
     async handle(req: Request, res: Response){
         
         const {name} = req.body
