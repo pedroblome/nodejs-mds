@@ -5,10 +5,11 @@ interface CategoryRequest {
 }
 
 class CreateCategoryService {
-  async execute({ name }) {
+  async execute({ name }: CategoryRequest) {
     if (name === "") {
       throw new Error("Name invalid");
     }
+
     const category = await prismaClient.category.create({
       data: {
         name: name,
@@ -18,6 +19,7 @@ class CreateCategoryService {
         name: true,
       },
     });
+
     return category;
   }
 }
